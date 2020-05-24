@@ -11,6 +11,8 @@ add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE
   main_window.cpp
   main_window.h
   main_window.ui
+  converters.cpp
+  converters.h
 )
 set_target_properties(${PROJECT_NAME} PROPERTIES
   CXX_STANDARD 11
