@@ -71,7 +71,24 @@ void MainWindow::convert()
     return;
   }
 
-  QString result{converters[resultIndex].to_(converters[sourceIndex].from_(ui->editSource->toPlainText()))};
+  QString source{ui->editSource->toPlainText()};
+  QByteArray source_bin{converters[sourceIndex].from_(source)};
+  QString result{converters[resultIndex].to_(source_bin)};
+
+  if (source.isEmpty()) {
+    ui->groupSource->setTitle(QStringLiteral("Source"));
+  }
+  else {
+    ui->groupSource->setTitle(QStringLiteral("Source (%1 chars, %2 bytes)").arg(source.size()).arg(source_bin.size()));
+  }
+
+  if (result.isEmpty()) {
+    ui->groupResult->setTitle(QStringLiteral("Result"));
+  }
+  else {
+    ui->groupResult->setTitle(QStringLiteral("Result (%1 chars)").arg(result.size()));
+  }
+
   for (int i = 0; i < result.size(); ++i) {
     if ((!result[i].isPrint()) || (!fm_->inFont(result[i]))) {
       result[i] = L'.';
