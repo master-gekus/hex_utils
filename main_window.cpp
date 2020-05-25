@@ -14,6 +14,7 @@ const converter converters[] = {
   {QStringLiteral("Plain text (Unicode)"), from_unicode, to_unicode},
   {QStringLiteral("Plain text (UTF-8)"), from_utf8, to_utf8},
   {QStringLiteral("Hexadecimal"), from_hex, to_hex},
+  {QStringLiteral("Base64"), from_base64, to_base64},
 };
 
 } // namespace {
@@ -30,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
   restoreGeometry(settings.value(GEOMETRY_KEY).toByteArray());
   restoreState(settings.value(STATE_KEY).toByteArray());
 
-  int sourceIndex{2};
+  int sourceIndex{3};
   int resultIndex{1};
 
   for (size_t i = 0; i < sizeof (converters) / sizeof (converters[0]); ++i) {

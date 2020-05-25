@@ -19,4 +19,7 @@ QString to_utf8(QByteArray source);
 QByteArray from_hex(QString source);
 QString to_hex(QByteArray source);
 
+QByteArray from_base64(QString source);
+QString to_base64(QByteArray source);
+
 #endif // CONVERTERS_H
